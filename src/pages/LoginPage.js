@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
 import BackgroundImage from "../components/BackgroundImage";
@@ -11,15 +11,18 @@ import { firebaseAuth } from "../utils/firebase-config";
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-
-    const navigate = useNavigate()
+  const navigate = useNavigate()
 
   const handleLogin = async () => {
+    setError("");
     try {
       await signInWithEmailAndPassword(firebaseAuth, email, password);
     } catch (error) {
-      console.log(error);
+      setError(
+        "There was a problem logging in. Check your email and password."
+      );
     }
   };
 
@@ -35,8 +38,9 @@ const LoginPage = () => {
         <div className="form-wrapper">
           <div className="form">
             <div className="title">
-              <h1>login</h1>
+              <h1>Login</h1>
             </div>
+            {error && <p className="error-message">{error}</p>}
             <div className="container">
               <input
                 type="text"
@@ -50,7 +54,10 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
-              <button onClick={ handleLogin}>Login</button>
+              <button onClick={handleLogin}>Login</button>
+              <p className="signup">
+                Don't have an account? <Link to="/signup">Sign up</Link>
+              </p>
             </div>
           </div>
         </div>
@@ -110,6 +117,15 @@ const Wrapper = styled.div`
           font-weight: bolder;
           font-size: 1.05rem;
         }
+        .signup {
+          padding-top: 0.5rem;
+          text-align: center;
+        }
+      }
+      .error-message {
+        color: red;
+        text-align: center;
+        font-size: 0.75rem;
       }
     }
   }

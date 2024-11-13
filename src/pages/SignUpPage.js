@@ -41,14 +41,14 @@ const SignUpPage = () => {
           </div>
           <div className="form">
             {showPassword ? (
-              <input type="password" placeholder="password" name="password"
+              <input type="password" placeholder="Password" name="password"
               value={formValues.password}
               onChange={(e)=>setFormValues({
                 ...formValues,[e.target.name]: e.target.value
               })}
               />
             ) : (
-              <input type="email" placeholder="email address" name="email"
+              <input type="email" placeholder="Email address" name="email"
               value={formValues.email}
               onChange={(e)=>setFormValues({
                 ...formValues,[e.target.name]: e.target.value

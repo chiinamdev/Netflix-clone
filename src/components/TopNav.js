@@ -10,8 +10,8 @@ const TopNav = ({ isScrolled }) => {
   const navlinks = [
     { name: "Home", link: "/" },
     { name: "Tv Show", link: "/tv" },
-    { name: "My List", link: "/mylist" },
-    { name: "Movies", link: "/movies" },
+    { name: "My List", link: "/movie" },
+    { name: "Movies", link: "/movie" },
   ];
 
 

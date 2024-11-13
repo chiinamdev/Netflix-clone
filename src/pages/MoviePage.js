@@ -1,8 +1,12 @@
 import React from 'react'
+import TopNav from '../components/TopNav'
+import Netflix from './Netflix'
 
 const MoviePage = () => {
   return (
-    <div>MoviePage</div>
+    <div>
+      <TopNav></TopNav>
+    </div>
   )
 }
 
